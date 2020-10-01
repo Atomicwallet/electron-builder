@@ -17,7 +17,7 @@ export function getDmgVendorPath() {
 
 export async function attachAndExecute(dmgPath: string, readWrite: boolean, task: () => Promise<any>) {
   //noinspection SpellCheckingInspection
-  const args = ["attach", "-noverify", "-noautoopen"]
+  const args = ["attach", "-noverify", "-noautoopen, -debug"]
   if (readWrite) {
     args.push("-readwrite")
   }
@@ -35,7 +35,7 @@ export async function attachAndExecute(dmgPath: string, readWrite: boolean, task
 
 export async function detach(name: string) {
   try {
-    await exec("hdiutil", ["detach", "-quiet", name])
+    await exec("hdiutil", ["detach", "-debug", name])
   }
   catch (e) {
     await new Promise((resolve, reject) => {
